@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-# {to get average highest,lowest temperature and humidity}
-module Task2
+module AverageTemp
   def self.avg_temp(file_name, year_month)
     temp_humidity = { 'max' => 0, 'min' => 0, 'humidity' => 0, 'files_count' => 0 }
     year_and_month = year_month.split('/')
-    # {getting files from required directory}
     valid_year = false
     file_name.each do |files|
       next unless files.include? year_and_month[0]
@@ -25,14 +23,11 @@ module Task2
   def self.read_work_file(files, temp_humidity)
     to_skip = 0
 
-    # {to read file contents}
     IO.foreach(files) do |line|
-      # {to skip first line of file}
       if to_skip.zero?
         to_skip += 1
       else
         file_data = line.split(',')
-        # {finding highest temperature}
         temp_humidity = sum_temp(file_data, temp_humidity)
       end
     end

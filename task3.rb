@@ -2,9 +2,7 @@
 
 require 'colorize'
 require 'date'
-
-# {to represent highest,lowest temperature }
-module Task3
+module RepresentTemp
   def self.representation(file_name, year)
     year_and_month = year.split('/')
     valid_year = false
@@ -24,10 +22,8 @@ module Task3
 
   def self.max_min_temp(files)
     to_skip = true
-    # {to read file contents}'
     i = 1
     IO.foreach(files) do |line|
-      # {to skip first line of file}
       if to_skip
         to_skip = false
       else
